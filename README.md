@@ -5,7 +5,7 @@ It's based on [Fake-Apache-Log-Generator](https://github.com/kiritbasu/Fake-Apac
 
 The default behaviour is the following :
 ```sql
-python apache-fake-log-gen.py -o LOG -p /var/log/apache/apache -n 0 -s 3
+python apache-log-gen.py -o LOG -p /var/log/apache/apache -n 0 -s 3
 ```
 The endless generated file is located in /var/log and a line is appended every 3 seconds.
 
