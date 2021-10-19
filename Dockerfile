@@ -1,6 +1,11 @@
+
+
 FROM python:2.7.13
 
 USER root
+COPY server.py /server.py
+ADD  script.sh  /
+RUN chmod +x /script.sh
 
 RUN apt-get clean && apt-get update \
 	&& apt-get install -y build-essential unzip \
@@ -12,8 +17,9 @@ RUN apt-get clean && apt-get update \
 	&& pip install -r requirements.txt \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/listss/* /tmp/* /var/tmp/* \
-	&& mkdir -p /var/log/apache
+	&& mkdir -p /var/log/apache && mv /server.py  /apache-log-generator/.
 	
 WORKDIR /apache-log-generator
 
-CMD ["python", "apache-log-gen.py", "-o", "LOG", "-p", "/var/log/apache/apache", "-n", "0", "-s", "3"]
+CMD ["/script.sh"]
+EXPOSE 80
