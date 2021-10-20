@@ -3,7 +3,6 @@
 FROM python:2.7.13
 
 USER root
-COPY server.py /server.py
 ADD  script.sh  /
 RUN chmod +x /script.sh
 
@@ -17,7 +16,7 @@ RUN apt-get clean && apt-get update \
 	&& pip install -r requirements.txt \
 	&& apt-get clean \
     && rm -rf /var/lib/apt/listss/* /tmp/* /var/tmp/* \
-	&& mkdir -p /var/log/apache && mv /server.py  /apache-log-generator/.
+	&& mkdir -p /var/log/apache 
 	
 WORKDIR /apache-log-generator
 
